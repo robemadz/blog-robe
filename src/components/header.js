@@ -5,7 +5,7 @@ import { StaticImage } from "gatsby-plugin-image"
 const Header = () => (
   <header className="bg-zinc-100 border border-b-2 border-b-zinc-300">
     <nav className="flex justify-between items-center max-w-screen-2xl mx-auto py-4">
-      <Link className="bg-pink-500/90 rounded-full" to="/">
+      <Link className="bg-pink-500/90 rounded-full mx-8" to="/">
         <StaticImage
           className="relative -top-1 -left-1"
           alt="basketball outlined icon"
