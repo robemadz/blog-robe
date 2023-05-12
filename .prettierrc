@@ -1,4 +1,5 @@
 {
+  "quoteProps": "preserve",
   "arrowParens": "avoid",
   "semi": false
 }
