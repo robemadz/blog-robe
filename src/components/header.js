@@ -14,17 +14,17 @@ const Header = () => (
       </Link>
       <ul className="flex font-medium">
         <li className="mx-2">
-          <Link className="block px-6 py-2 hover:bg-pink-500/90" to="/">
+          <Link className="block px-6 py-2 hover:bg-slate-200" to="/">
             Home
           </Link>
         </li>
         <li className="mx-2">
-          <Link className="block px-6 py-2 hover:bg-pink-500/90" to="/blog">
+          <Link className="block px-6 py-2 hover:bg-slate-200" to="/blog">
             Blog
           </Link>
         </li>
         <li className="mx-2">
-          <Link className="block px-6 py-2 hover:bg-pink-500/90" to="/about">
+          <Link className="block px-6 py-2 hover:bg-slate-200" to="/about">
             About
           </Link>
         </li>
