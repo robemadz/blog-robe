@@ -9,7 +9,7 @@ const BlogPage = ({ data }) => {
       <section className="max-w-screen-2xl mx-auto flex flex-col justify-between md:flex-row gap-4 mt-20">
         {data.allMdx.nodes.map(node => (
           <article
-            className="bg-white py-4 px-5 border border-zinc-100 shadow-sm mx-4"
+            className="relative bg-white py-4 px-5 border border-zinc-100 shadow-sm mx-4 hover:-translate-y-1 hover:-translate-x-1 hover:shadow-md transition"
             key={node.id}
           >
             <h2 className="text-3xl font-semibold text-zinc-700 mb-2">
