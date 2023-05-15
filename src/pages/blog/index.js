@@ -17,9 +17,11 @@ const BlogPage = ({ data }) => {
               className="relative max-w-[400px] bg-white py-4 px-5 border border-zinc-100 shadow-sm mx-2 hover:-translate-y-1 hover:-translate-x-1 hover:shadow-md transition"
               key={node.id}
             >
-              <h2 className="text-3xl font-semibold text-zinc-700 mb-3 line-clamp-2 h-[72px]">
-                {node.frontmatter.title}
-              </h2>
+              <Link to={`/blog/${node.frontmatter.slug}`}>
+                <h2 className="text-3xl font-semibold text-zinc-700 mb-3 line-clamp-2 h-[72px]">
+                  {node.frontmatter.title}
+                </h2>
+              </Link>
               <p className="text-sm text-zinc-500 pb-1 border-b border-b-zinc-300 mb-3">
                 Publicado: {node.frontmatter.date}
               </p>
@@ -36,7 +38,7 @@ const BlogPage = ({ data }) => {
               <p className="mb-6">{node.frontmatter.description}</p>
               <div className="text-right">
                 <Link
-                  className="mr-auto font-medium text-zinc-700 hover:text-zinc-400 transition"
+                  className="mr-auto font-medium text-pink-500 hover:text-pink-300 transition"
                   to={`/blog/${node.frontmatter.slug}`}
                 >
                   Leer artículo →

@@ -13,18 +13,24 @@ const Header = () => (
         />
       </Link>
       <ul className="flex font-medium">
-        <li className="mx-2">
-          <Link className="block px-6 py-2 hover:bg-slate-100" to="/">
+        <li className="mx-1 md:mx-2">
+          <Link className="block px-4 md:px-6 py-2 hover:bg-slate-100" to="/">
             Home
           </Link>
         </li>
-        <li className="mx-2">
-          <Link className="block px-6 py-2 hover:bg-slate-100" to="/blog">
+        <li className="mx-1 md:mx-2">
+          <Link
+            className="block px-4 md:px-6 py-2 hover:bg-slate-100"
+            to="/blog"
+          >
             Blog
           </Link>
         </li>
-        <li className="mx-2">
-          <Link className="block px-6 py-2 hover:bg-slate-100" to="/about">
+        <li className="mx-1 md:mx-2">
+          <Link
+            className="block px-4 md:px-6 py-2 hover:bg-slate-100"
+            to="/about"
+          >
             About
           </Link>
         </li>
