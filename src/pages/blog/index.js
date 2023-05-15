@@ -7,14 +7,14 @@ import Seo from "../../components/seo"
 const BlogPage = ({ data }) => {
   return (
     <Layout pageTitle="My Blog Posts">
-      <section className="max-w-screen-xl mx-auto flex justify-center flex-wrap gap-4 mt-20">
+      <section className="max-w-screen-xl mx-auto flex justify-center flex-wrap gap-4 pt-20">
         {data.allMdx.nodes.map(node => {
           const images = node.frontmatter.hero_image.childrenImageSharp.map(
             image => getImage(image.gatsbyImageData)
           )
           return (
             <article
-              className="relative max-w-[400px] bg-white py-4 px-5 border border-zinc-100 shadow-sm mx-2 hover:-translate-y-1 hover:-translate-x-1 hover:shadow-md transition"
+              className="relative max-w-[400px] bg-zinc-100/5 backdrop-blur-sm py-4 px-5 border border-zinc-100 shadow-sm mx-2 hover:-translate-y-1 hover:-translate-x-1 hover:shadow-md transition"
               key={node.id}
             >
               <Link to={`/blog/${node.frontmatter.slug}`}>
@@ -35,7 +35,9 @@ const BlogPage = ({ data }) => {
                   />
                 ))}
               </div>
-              <p className="mb-6">{node.frontmatter.description}</p>
+              <p className="mb-6 line-clamp-3 text-sm text-slate-700">
+                {node.frontmatter.description}
+              </p>
               <div className="text-right">
                 <Link
                   className="mr-auto font-medium text-pink-500 hover:text-pink-300 transition"
