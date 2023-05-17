@@ -3,7 +3,7 @@ import { Link } from "gatsby"
 import { StaticImage } from "gatsby-plugin-image"
 
 const Header = () => (
-  <header className="bg-white border border-b-2 border-b-zinc-100">
+  <header className="bg-white border-b-2 border-b-slate-700">
     <nav className="flex justify-between items-center max-w-screen-2xl mx-auto py-4">
       <Link className="bg-pink-500/90 rounded-full mx-8" to="/">
         <StaticImage
