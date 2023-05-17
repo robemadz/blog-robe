@@ -25,10 +25,12 @@ const BlogPost = ({ data, children }) => {
           </div>
 
           <GatsbyImage
+            class="w-full object-cover"
             image={image}
             alt={data.mdx.frontmatter.hero_image_alt}
           />
-          <div className="mx-auto px-6 py-6 md:px-8 md:py-12 leading-7 text-slate-700 bg-white first-letter:text-5xl first-letter:mr-2 first-letter:float-left">
+
+          <div className="mx-auto py-6 md:px-8 md:py-12 leading-7 text-slate-700 bg-white first-letter:text-5xl first-letter:mr-2 first-letter:float-left">
             {children}
           </div>
         </article>

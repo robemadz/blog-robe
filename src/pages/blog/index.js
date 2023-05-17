@@ -1,55 +1,73 @@
 import * as React from "react"
-import { Link, graphql } from "gatsby"
-import { GatsbyImage, getImage } from "gatsby-plugin-image"
+import { useState } from "react"
+import { graphql } from "gatsby"
 import Layout from "../../components/layout"
+import BlogPosts from "../../components/blogposts"
 import Seo from "../../components/seo"
 
 const BlogPage = ({ data }) => {
+  const posts = data.allMdx.nodes
+  const postsPerPage = 2
+
+  // Estado para controlar el número de página actual
+  const [currentPage, setCurrentPage] = useState(1)
+
+  // Cálculo de los índices de los posts a mostrar en la página actual
+  const indexOfLastPost = currentPage * postsPerPage
+  const indexOfFirstPost = indexOfLastPost - postsPerPage
+
+  //Total de páginas
+  const totalPages = Math.ceil(posts.length / postsPerPage)
+
+  // Obtener los posts de la página actual
+  const currentPosts = posts.slice(indexOfFirstPost, indexOfLastPost)
+
+  // Verificar si es la primera página
+  const isFirstPage = currentPage === 1
+
+  // Verificar si es la última página
+  const isLastPage = currentPage === totalPages
+
+  // Función para ir a la página anterior
+  const prevPage = () => {
+    if (currentPage > 1) {
+      setCurrentPage(currentPage - 1)
+    }
+  }
+
+  // Función para ir a la página siguiente
+  const nextPage = () => {
+    if (currentPage < totalPages) {
+      setCurrentPage(currentPage + 1)
+    }
+  }
+
   return (
     <Layout pageTitle="My Blog Posts">
-      <section className="max-w-screen-xl mx-auto flex justify-center flex-wrap gap-4 pt-20">
-        {data.allMdx.nodes.map(node => {
-          const images = node.frontmatter.hero_image.childrenImageSharp.map(
-            image => getImage(image.gatsbyImageData)
-          )
-          return (
-            <article
-              className="relative max-w-[400px] bg-zinc-100/5 backdrop-blur-sm py-4 px-5 border border-zinc-100 shadow-sm mx-2 hover:-translate-y-1 hover:-translate-x-1 hover:shadow-md transition"
-              key={node.id}
-            >
-              <Link to={`/blog/${node.frontmatter.slug}`}>
-                <h2 className="text-3xl font-semibold text-zinc-700 mb-3 line-clamp-2 h-[72px]">
-                  {node.frontmatter.title}
-                </h2>
-              </Link>
-              <p className="text-sm text-zinc-500 pb-1 border-b border-b-zinc-300 mb-3">
-                Publicado: {node.frontmatter.date}
-              </p>
-              <div>
-                {images.map(image => (
-                  <GatsbyImage
-                    className="my-8"
-                    key={node.id}
-                    image={image}
-                    alt={node.frontmatter.hero_image_alt}
-                  />
-                ))}
-              </div>
-              <p className="mb-6 line-clamp-3 text-sm text-slate-700">
-                {node.frontmatter.description}
-              </p>
-              <div className="text-right">
-                <Link
-                  className="mr-auto font-medium text-pink-500 hover:text-pink-300 transition"
-                  to={`/blog/${node.frontmatter.slug}`}
-                >
-                  Leer artículo →
-                </Link>
-              </div>
-            </article>
-          )
-        })}
+      <section className="max-w-screen-xl mx-auto flex justify-center flex-wrap gap-6 pt-20">
+        <BlogPosts posts={currentPosts} />
       </section>
+      <div className="flex flex-col justify-center mx-auto sm:flex-row mt-8 gap-4">
+        <button
+          className="px-5 py-3 mx-4 sm:mx-0 bg-white border border-gray-500 text-slate-800 hover:text-white hover:bg-gray-500 disabled:bg-gray-200/70 disabled:text-gray-400/60 disabled:border-none transition"
+          onClick={prevPage}
+          disabled={isFirstPage}
+        >
+          Página anterior
+        </button>
+        <button
+          className="px-5 py-3 mx-4 sm:mx-0 bg-white border border-gray-500 text-slate-800 hover:text-white hover:bg-gray-500 disabled:bg-gray-200/70 disabled:text-gray-400/60 disabled:border-none transition"
+          onClick={nextPage}
+          disabled={isLastPage}
+        >
+          Página siguiente
+        </button>
+      </div>
+      <div className="text-center mt-4 text-slate-700">
+        <p>
+          {currentPage} of {totalPages}
+        </p>
+      </div>
     </Layout>
   )
 }
