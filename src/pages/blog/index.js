@@ -52,6 +52,8 @@ const BlogPage = ({ data }) => {
           className="px-5 py-3 mx-4 sm:mx-0 bg-white border border-gray-500 text-slate-800 hover:text-white hover:bg-gray-500 disabled:bg-gray-200/70 disabled:text-gray-400/60 disabled:border-none transition"
           onClick={prevPage}
           disabled={isFirstPage}
+          aria-label="Página anterior"
+          aria-disabled={isFirstPage ? true : false}
         >
           Página anterior
         </button>
@@ -59,6 +61,8 @@ const BlogPage = ({ data }) => {
           className="px-5 py-3 mx-4 sm:mx-0 bg-white border border-gray-500 text-slate-800 hover:text-white hover:bg-gray-500 disabled:bg-gray-200/70 disabled:text-gray-400/60 disabled:border-none transition"
           onClick={nextPage}
           disabled={isLastPage}
+          aria-label="Página siguiente"
+          aria-disabled={isLastPage ? true : false}
         >
           Página siguiente
         </button>
