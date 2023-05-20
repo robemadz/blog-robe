@@ -16,7 +16,7 @@ const BlogPage = ({ data, pageContext }) => {
 
   return (
     <Layout pageTitle="My Blog Posts">
-      <section className="max-w-screen-xl mx-auto flex justify-center flex-wrap gap-6 pt-20">
+      <section className="max-w-screen-xl mx-auto flex justify-center flex-wrap gap-4 pt-20">
         <BlogPosts posts={posts} currentPage={currentPage} />
       </section>
 

@@ -7,14 +7,14 @@ const IndexPage = () => (
   <Layout>
     <section className=" py-20 bg-amber-300 border-b-2 border-b-slate-700">
       <div className="max-w-screen-xl mx-auto px-4 sm:px-10">
-        <h1 className="text-6xl leading-tight font-medium mb-6">
+        <h1 className="text-6xl leading-tight font-semibold tracking-wider text-slate-800 mb-6">
           Catch sentence.
         </h1>
-        <h2 className="text-2xl font-light mb-6">
+        <h2 className="text-2xl text-slate-700 tracking-wide mb-6">
           Two lines sentence as a subtitle
         </h2>
         <Link
-          className="inline-block bg-slate-900 text-white text-xl py-2 px-10 rounded-full font-light"
+          className="inline-block bg-white text-slate-800 text-xl py-2 px-10 rounded-full border border-slate-800 font-light hover:bg-slate-800 hover:text-white transition"
           to="/blog"
         >
           Go to Blog
