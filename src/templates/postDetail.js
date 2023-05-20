@@ -1,10 +1,10 @@
 import * as React from "react"
 import { graphql } from "gatsby"
 import { GatsbyImage, getImage } from "gatsby-plugin-image"
-import Layout from "../../components/layout"
-import Seo from "../../components/seo"
+import Layout from "../components/layout"
+import Seo from "../components/seo"
 
-const BlogPost = ({ data, children }) => {
+const BlogPost = ({ data }) => {
   const image = getImage(data.mdx.frontmatter.hero_image)
   const avatar = getImage(data.mdx.frontmatter.avatar)
   return (
@@ -31,7 +31,7 @@ const BlogPost = ({ data, children }) => {
           />
 
           <div className="mx-auto py-6 md:px-8 md:py-12 leading-7 text-slate-700 bg-white first-letter:text-5xl first-letter:mr-2 first-letter:float-left">
-            {children}
+            <p>{data.mdx.body}</p>
           </div>
         </article>
       </section>
@@ -58,6 +58,7 @@ export const query = graphql`
           }
         }
       }
+      body
     }
   }
 `

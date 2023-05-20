@@ -10,6 +10,9 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
         allMdx(sort: { frontmatter: { date: DESC } }) {
           nodes {
             id
+            frontmatter {
+              slug
+            }
             internal {
               type
             }
@@ -24,11 +27,11 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
     return
   }
 
-  // Create blog-list pages
   const posts = result.data.allMdx.nodes
   const postsPerPage = 2
   const numPages = Math.ceil(posts.length / postsPerPage)
 
+  //Create blog lists pages
   Array.from({ length: numPages }).forEach((_, i) => {
     createPage({
       path: i === 0 ? `/blog` : `/blog/${i + 1}`,
@@ -38,6 +41,22 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
         skip: i * postsPerPage,
         numPages,
         currentPage: i + 1,
+      },
+    })
+  })
+
+  //Create blog post details
+  posts.forEach((post, i) => {
+    const pageNumber = Math.ceil((i + 1) / postsPerPage)
+
+    createPage({
+      path:
+        pageNumber === 1
+          ? `/blog/${post.frontmatter.slug}`
+          : `/blog/${pageNumber}/${post.frontmatter.slug}`,
+      component: path.resolve("./src/templates/postDetail.js"),
+      context: {
+        id: post.id,
       },
     })
   })
