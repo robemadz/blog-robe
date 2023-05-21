@@ -23,7 +23,7 @@ const IndexPage = () => {
           </Link>
         </div>
       </section>
-      <section>
+      <section className="max-w-screen-lg mx-auto my-12 px-4 sm:px-10 bg-white/75">
         <RecentPosts />
       </section>
     </Layout>

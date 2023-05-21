@@ -19,19 +19,27 @@ const RecentPosts = () => {
   const posts = data.allMdx.nodes
 
   return (
-    <section>
-      <h2>Recent Posts</h2>
+    <>
+      <h2 className="text-4xl font-light tracking-wide text-slate-800 py-2 mb-6 border-b-2 border-b-slate-700">
+        Recent Posts
+      </h2>
       <ul>
         {posts.map(post => (
-          <li key={post.id}>
-            <Link to={`/blog/${post.frontmatter.slug}`}>
-              {post.frontmatter.title}
+          <li
+            className="flex justify-between items-center text-xl font-light text-slate-700 py-2 px-4 my-4 bg-slate-100/50 rounded-sm border border-slate-700"
+            key={post.id}
+          >
+            <Link
+              className="hover:text-amber-400 transition"
+              to={`/blog/${post.frontmatter.slug}`}
+            >
+              <h3>{post.frontmatter.title}</h3>
             </Link>
             <p>{post.frontmatter.date}</p>
           </li>
         ))}
       </ul>
-    </section>
+    </>
   )
 }
 
