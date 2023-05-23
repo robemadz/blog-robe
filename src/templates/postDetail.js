@@ -14,16 +14,17 @@ const BlogPost = ({ data }) => {
           <h2 className="font-semibold text-2xl mb-8 md:text-4xl md:mb-10 line-clamp-2 text-slate-800">
             {data.mdx.frontmatter.title}
           </h2>
-          <div className="flex items-center mb-4 py-2 md:mb-6 border-y border-y-zinc-200 font-light">
-            <GatsbyImage image={avatar} alt="avatar" className="w-8" />
-            <p className="text-md text-slate-500 ml-2">
-              By {data.mdx.frontmatter.author}
-            </p>
-            <p className="text-md text-slate-500 ml-2">
-              | {data.mdx.frontmatter.date}
-            </p>
-          </div>
-
+          <aside className="flex items-center mb-4 py-4 gap-4 md:mb-6 border-y border-y-zinc-200 font-light">
+            <div className="flex flex-col flex-1 sm:flex-row sm:items-center">
+              <GatsbyImage image={avatar} alt="avatar" className="w-8" />
+              <p className="text-md text-slate-500 ml-2">
+                By {data.mdx.frontmatter.author} | {data.mdx.frontmatter.date}
+              </p>
+            </div>
+            <span className="text-sm px-4 py-2 bg-slate-50 rounded-full text-slate-500 font-light">
+              {data.mdx.frontmatter.category}
+            </span>
+          </aside>
           <GatsbyImage
             class="w-full object-cover"
             image={image}
@@ -57,6 +58,7 @@ export const query = graphql`
             gatsbyImageData
           }
         }
+        category
       }
       body
     }

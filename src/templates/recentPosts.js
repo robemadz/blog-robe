@@ -30,7 +30,7 @@ const RecentPosts = () => {
             key={post.id}
           >
             <Link
-              className="hover:text-amber-400 transition"
+              className="hover:text-amber-400 mr-5 md:mr-0 transition"
               to={`/blog/${post.frontmatter.slug}`}
             >
               <h3>{post.frontmatter.title}</h3>

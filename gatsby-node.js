@@ -12,6 +12,7 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
             id
             frontmatter {
               slug
+              category
             }
             internal {
               type
@@ -48,15 +49,59 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
   //Create blog post details
   posts.forEach((post, i) => {
     const pageNumber = Math.ceil((i + 1) / postsPerPage)
-
+    const originalPath =
+      pageNumber === 1
+        ? `/blog/${post.frontmatter.slug}`
+        : `/blog/${pageNumber}/${post.frontmatter.slug}`
     createPage({
-      path:
-        pageNumber === 1
-          ? `/blog/${post.frontmatter.slug}`
-          : `/blog/${pageNumber}/${post.frontmatter.slug}`,
+      path: originalPath,
       component: path.resolve("./src/templates/postDetail.js"),
       context: {
         id: post.id,
+        originalPath,
+      },
+    })
+  })
+
+  /*  //Create category results
+  posts.forEach(post => {
+    const category = post.frontmatter.category
+    createPage({
+      path: `blog/${category}`,
+      component: path.resolve("./src/templates/categoryResults.js"),
+      context: {
+        category: category,
+        originalPath,
+      },
+    })
+  })
+}  */
+
+  const categories = posts.map(post => post.frontmatter.category)
+
+  categories.forEach(category => {
+    const categoryPosts = posts.filter(
+      post => post.frontmatter.category === category
+    )
+    const categoryOriginalPaths = categoryPosts.map(post => {
+      const postIndex = posts.findIndex(p => p.id === post.id)
+      const pageNumber = Math.floor(postIndex / postsPerPage) + 1
+      const originalPath =
+        pageNumber === 1
+          ? `/blog/${post.frontmatter.slug}`
+          : `/blog/${pageNumber}/${post.frontmatter.slug}`
+      return {
+        id: post.id,
+        originalPath,
+      }
+    })
+
+    createPage({
+      path: `/blog/${category}`,
+      component: path.resolve("./src/templates/categoryResults.js"),
+      context: {
+        category: category,
+        originalPath: categoryOriginalPaths,
       },
     })
   })

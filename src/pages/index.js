@@ -2,6 +2,7 @@ import * as React from "react"
 import { Link } from "gatsby"
 import Layout from "../components/layout"
 import RecentPosts from "../templates/recentPosts"
+import CategoriesList from "../components/categoriesList"
 import Seo from "../components/seo"
 
 const IndexPage = () => {
@@ -25,6 +26,9 @@ const IndexPage = () => {
       </section>
       <section className="max-w-screen-lg mx-auto my-12 px-4 sm:px-10 bg-white/75">
         <RecentPosts />
+      </section>
+      <section className="max-w-screen-lg mx-auto mt-12 px-4 sm:px-10">
+        <CategoriesList />
       </section>
     </Layout>
   )
