@@ -10,7 +10,6 @@
 module.exports = {
   siteMetadata: {
     title: `Robemadz Blog`,
-    lang: "es",
     description: `PlayGorund blog to learn gatsby + react`,
     author: `@robemadz`,
     siteUrl: `https://blogrobemain.gatsbyjs.io/`,
@@ -35,6 +34,12 @@ module.exports = {
     `gatsby-plugin-postcss`,
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
+    {
+      resolve: "gatsby-plugin-html-attributes",
+      options: {
+        lang: "es-ES",
+      },
+    },
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
